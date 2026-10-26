@@ -1,0 +1,121 @@
+<style>
+.navbar {
+  background-color: #fff; 
+  border-bottom: 1px solid #ddd; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+  padding: 0.5rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand i {
+  font-size: 1.5rem;
+  color: #fe424d; 
+  transition: color 0.3s ease;
+}
+
+.navbar-brand i:hover {
+  color: #d9363e; 
+}
+
+.nav-link {
+  color: #333;
+  font-weight: 500;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fe424d;
+  text-decoration: underline;
+}
+
+.search-inp {
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  width: 250px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-inp:focus {
+  outline: none;
+  border-color: #fe424d;
+  box-shadow: 0 0 5px rgba(254, 66, 77, 0.5);
+}
+
+.search-btn {
+  background-color: #fe424d;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: #d9363e;
+  color: #fff;
+}
+
+.search-btn i {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 576px) {
+  .search-inp {
+    width: 150px;
+    padding: 0.4rem 1rem;
+  }
+
+  .search-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav me-auto align-items-center">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav mx-auto my-2 my-md-0">
+        <form class="d-flex" role="search" action="/listings" method="GET">
+          <input
+            class="form-control me-2 search-inp"
+            type="search"
+            name="search"
+            placeholder="Search destinations"
+          />
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto align-items-center">
+        <% if (typeof currUser === 'undefined' || !currUser) { %>
+          <a class="nav-link" href="/listings/new">Airbnb your home</a>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } else { %>
+          <% if (currUser.role === 'host') { %>
+            <a class="nav-link" href="/listings/new">Airbnb your home</a>
+          <% } %>
+          <a class="nav-link" href="/dashboard"><b>Dashboard</b></a>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

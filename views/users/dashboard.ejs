@@ -1,0 +1,18 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-4">
+  <div class="col-6 offset-3">
+    <div class="card shadow-sm border">
+      <div class="card-body p-4">
+        <h3 class="card-title mb-4">
+          <%= currUser.role === 'host' ? 'Host Dashboard' : 'Guest Dashboard' %>
+        </h3>
+        <div class="mb-3">
+          <p class="fs-5 mb-2"><b>Username:</b> <%= currUser.username %></p>
+          <p class="fs-5 mb-2"><b>Email:</b> <%= currUser.email %></p>
+          <p class="fs-5 mb-0"><b>Role:</b> <%= currUser.role === 'host' ? 'Host' : 'Guest' %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
